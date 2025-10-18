@@ -68,3 +68,56 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Portfolio Machine
+
+Simple portfolio builder — create multi-page portfolios, edit pages/sections (HTML), manage assets and export static sites.
+
+Features
+- Create multiple portfolios and pages with ordered sections (HTML).
+- WYSIWYG or raw HTML editing (use TipTap/Quill/your editor).
+- Local autosave (IndexedDB) + persisted metadata (localStorage via zustand).
+- Asset management (store file IDs/URLs; use proxy for Drive if needed).
+- Export to ZIP / static HTML for hosting (Netlify, GitHub Pages).
+
+Getting started (local)
+1. Install
+   npm install
+
+2. Run dev server
+   npm start
+   Open http://localhost:3000
+
+3. Build for production
+   npm run build
+   Serve the build folder or deploy to Netlify/Vercel.
+
+Environment
+- Use `.env.local` for local-only build-time values. Example:
+  REACT_APP_APPS_SCRIPT_URL=https://script.google.com/macros/s/…/exec
+- Do NOT commit `.env.local`.
+
+Deploy (Netlify)
+- Push repo to GitHub.
+- Create a new site on Netlify from the repo.
+- Build command: `npm run build`
+- Publish directory: `build`
+- For SPA routing, add `public/_redirects` with:
+  ```
+  /*    /index.html   200
+  ```
+
+Data & backups
+- Metadata is persisted to localStorage. Large page bodies and drafts are stored in IndexedDB (autosave).
+- Use the Export button in the app to download a ZIP/JSON backup.
+
+Contributing
+- Fork, implement changes, open a PR.
+- Keep assets out of localStorage; use IndexedDB or external storage.
+
+License
+- MIT
+
+Notes
+- Sanitize HTML before publishing (DOMPurify recommended).
+- If using Google Drive for assets, add an Apps Script proxy to avoid cross-origin/embed restrictions.

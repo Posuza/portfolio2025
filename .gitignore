@@ -18,6 +18,26 @@
 .env.test.local
 .env.production.local
 
+# Node / build
+node_modules/
+build/
+dist/
+
+# Environment
+.env.local
+.env
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Tests / caches
+coverage/
+.cache/
