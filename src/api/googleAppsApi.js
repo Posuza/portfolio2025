@@ -34,7 +34,8 @@ export async function callApi(action, method = 'GET', body) {
   }
 }
 
-export default {
+// named object assigned before default export to satisfy ESLint import/no-anonymous-default-export
+const googleAppsApi = {
   setBaseUrl,
   buildUrl,
   callApi,
@@ -42,3 +43,5 @@ export default {
     return { BASE_URL }
   },
 }
+
+export default googleAppsApi

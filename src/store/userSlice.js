@@ -1,6 +1,3 @@
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
-// switched to the real service
 import api from '../services/userService'
 
 const readFileAsDataURL = (file) =>

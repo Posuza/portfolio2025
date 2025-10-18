@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import usePortfolioStore from "../store/store";
 
 export default function UserProfile() {
@@ -15,10 +15,6 @@ export default function UserProfile() {
 
   // ref for file input
   const fileRef = useRef(null);
-
-  // sample Drive image URL ID and computed uc URL
-  const SAMPLE_FILE_ID = "1Jb5a0wJQ2-kXmTrdDNMyh27cBaoFHfNE";
-  const SAMPLE_IMG = `https://drive.google.com/uc?export=view&id=${SAMPLE_FILE_ID}`;
 
   // fetch proxied dataURL once on mount
   useEffect(() => {
@@ -124,7 +120,7 @@ export default function UserProfile() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  async function handleDelete(id) {
+  const handleDelete = useCallback(async (id) => {
     if (!window.confirm("Delete this profile?")) return;
     setLoading(true);
     try {
@@ -136,7 +132,7 @@ export default function UserProfile() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [deleteRemote, editingId]);
 
   // reference handleDelete so eslint doesn't mark it as unused (keeps code simple)
   useEffect(() => { /* reference for linter */ void handleDelete; }, []);
