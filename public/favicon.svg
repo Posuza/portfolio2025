@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="P H T M animated favicon">
+  <rect width="100%" height="100%" rx="18" fill="#071028"/>
+
+  <style>
+    text {
+      font-family: "Poppins", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-weight: 700;
+      font-size: 46px;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    :root { --cycle: 6s; --seg: calc(var(--cycle) / 4); }
+
+    /* P: rotate fade */
+    @keyframes rotateIn {
+      0%   { opacity: 0; transform: translateY(8px) rotate(-50deg) scale(0.8); filter: blur(2px); }
+      12%  { opacity: 1; transform: translateY(0) rotate(6deg) scale(1.02); filter: blur(0); }
+      30%  { transform: translateY(-3px) rotate(-2deg) scale(1.04); }
+      40%  { opacity: 0; transform: translateY(-10px) rotate(20deg) scale(0.9); filter: blur(1px); }
+      100% { opacity: 0; }
+    }
+
+    /* H: slide from left */
+    @keyframes slideIn {
+      0%   { opacity: 0; transform: translateX(-18px) skewX(-8deg) scale(0.9); }
+      12%  { opacity: 1; transform: translateX(0) skewX(0) scale(1); }
+      30%  { transform: translateX(0) skewX(2deg) scale(1.03); }
+      40%  { opacity: 0; transform: translateX(18px) skewX(10deg) scale(0.92); }
+      100% { opacity: 0; }
+    }
+
+    /* T: flip-like using rotate + skew (2D only) */
+    @keyframes flipIn2D {
+      0%   { opacity: 0; transform: translateY(10px) rotate(-60deg) scale(0.86); filter: blur(2px); }
+      12%  { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); filter: blur(0); }
+      30%  { transform: translateY(-2px) rotate(6deg) scale(1.02); }
+      40%  { opacity: 0; transform: translateY(-10px) rotate(60deg) scale(0.9); filter: blur(1px); }
+      100% { opacity: 0; }
+    }
+
+    /* M: pop */
+    @keyframes popIn {
+      0%   { opacity: 0; transform: translateY(12px) scale(0.78); filter: blur(2px); }
+      12%  { opacity: 1; transform: translateY(0) scale(1.08); filter: blur(0); }
+      24%  { transform: translateY(-4px) scale(1.12); }
+      36%  { opacity: 0; transform: translateY(-12px) scale(0.85); }
+      100% { opacity: 0; }
+    }
+
+    @keyframes glow {
+      0% { filter: none; }
+      50% { filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35)); }
+      100% { filter: none; }
+    }
+
+    .letter { opacity: 0; transform-origin: 50% 50%; }
+
+    .p {
+      fill:#ff6b6b;
+      animation: rotateIn var(--cycle) linear infinite, glow 1.2s ease-in-out infinite;
+      animation-delay: 0s, 0s;
+    }
+    .h {
+      fill:#60a5fa;
+      animation: slideIn var(--cycle) linear infinite, glow 1.2s ease-in-out infinite;
+      animation-delay: var(--seg), var(--seg);
+    }
+    .t {
+      fill:#34d399;
+      animation: flipIn2D var(--cycle) linear infinite, glow 1.2s ease-in-out infinite;
+      animation-delay: calc(2 * var(--seg)), calc(2 * var(--seg));
+    }
+    .m {
+      fill:#fbbf24;
+      animation: popIn var(--cycle) linear infinite, glow 1.2s ease-in-out infinite;
+      animation-delay: calc(3 * var(--seg)), calc(3 * var(--seg));
+    }
+  </style>
+
+  <g>
+    <text class="letter p" x="50%" y="50%">P</text>
+    <text class="letter h" x="50%" y="50%">H</text>
+    <text class="letter t" x="50%" y="50%">T</text>
+    <text class="letter m" x="50%" y="50%">M</text>
+  </g>
+</svg>
