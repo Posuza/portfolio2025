@@ -16,22 +16,6 @@ export default function UserProfile() {
   // ref for file input
   const fileRef = useRef(null);
 
-  // fetch proxied dataURL once on mount
-  useEffect(() => {
-    async function loadProxy() {
-      try {
-        const url = `${process.env.REACT_APP_APPS_SCRIPT_URL}?action=getImage&fileId=${encodeURIComponent(SAMPLE_FILE_ID)}`
-        const r = await fetch(url)
-        const j = await r.json()
-        if (j.dataUrl) setPreview(j.dataUrl)
-        else console.error('proxy error', j)
-      } catch (e) {
-        console.error('proxy fetch failed', e)
-      }
-    }
-    loadProxy()
-  }, [])
-
   const items = usePortfolioStore((s) => s.items) || [];
   const fetchRemote = usePortfolioStore((s) => s.fetchRemote);
   const saveProfileWithImage = usePortfolioStore((s) => s.saveProfileWithImage);
