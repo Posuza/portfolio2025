@@ -119,7 +119,7 @@ export default function UserProfile() {
   }, [deleteRemote, editingId]);
 
   // reference handleDelete so eslint doesn't mark it as unused (keeps code simple)
-  useEffect(() => { /* reference for linter */ void handleDelete; }, []);
+  useEffect(() => { /* no-op; reference to satisfy linter */ void handleDelete; }, [handleDelete]);
 
   const filtered = items.filter(
     (p) =>
