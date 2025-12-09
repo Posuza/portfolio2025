@@ -69,55 +69,221 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# Portfolio Machine
+# 🎨 Professional Portfolio Application
 
-Simple portfolio builder — create multi-page portfolios, edit pages/sections (HTML), manage assets and export static sites.
+A modern, full-featured portfolio website built with React 19, featuring a Google Apps Script backend for data management, professional UI/UX, and dark mode support.
 
-Features
-- Create multiple portfolios and pages with ordered sections (HTML).
-- WYSIWYG or raw HTML editing (use TipTap/Quill/your editor).
-- Local autosave (IndexedDB) + persisted metadata (localStorage via zustand).
-- Asset management (store file IDs/URLs; use proxy for Drive if needed).
-- Export to ZIP / static HTML for hosting (Netlify, GitHub Pages).
+## ✨ Features
 
-Getting started (local)
-1. Install
-   npm install
+### 🎯 Core Features
+- **Professional Portfolio Showcase** - Projects, education, work experience, references, and blog posts
+- **Dark/Light Mode** - Fully themed UI with smooth transitions
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **Multi-language Support** - i18next integration (English, Chinese, Malay, Thai)
+- **State Management** - Zustand with persistence and DevTools
+- **Google Sheets Backend** - Data stored in Google Sheets via Apps Script API
 
-2. Run dev server
-   npm start
-   Open http://localhost:3000
+### 📱 Pages
+- **Home** - Hero section with featured projects
+- **Projects** - Grid view of all projects with detail pages
+- **Education** - Timeline view of educational background
+- **Work Experience** - Professional experience showcase
+- **References** - Contact cards with recommendations
+- **Blog** - Article list with featured images
+- **Dashboard** - Admin overview with statistics (protected)
+- **Users** - User management table (protected)
 
-3. Build for production
-   npm run build
-   Serve the build folder or deploy to Netlify/Vercel.
+### 🔐 Authentication
+- Protected routes for admin features
+- Persistent login state
+- Role-based access control
 
-Environment
-- Use `.env.local` for local-only build-time values. Example:
-  REACT_APP_APPS_SCRIPT_URL=https://script.google.com/macros/s/…/exec
-- Do NOT commit `.env.local`.
+### 🎨 Design System
+- Professional sky/slate color palette
+- Consistent theme tokens across all components
+- Custom UI for each entity type
+- Loading and empty states
+- Professional typography and spacing
 
-Deploy (Netlify)
-- Push repo to GitHub.
-- Create a new site on Netlify from the repo.
-- Build command: `npm run build`
-- Publish directory: `build`
-- For SPA routing, add `public/_redirects` with:
-  ```
-  /*    /index.html   200
-  ```
+## 🚀 Getting Started
 
-Data & backups
-- Metadata is persisted to localStorage. Large page bodies and drafts are stored in IndexedDB (autosave).
-- Use the Export button in the app to download a ZIP/JSON backup.
+### Prerequisites
+```bash
+Node.js >= 16
+npm or yarn
+```
 
-Contributing
-- Fork, implement changes, open a PR.
-- Keep assets out of localStorage; use IndexedDB or external storage.
+### Installation
 
-License
-- MIT
+1. **Clone the repository**
+```bash
+git clone <your-repo-url>
+cd my-portfolio1
+```
 
-Notes
-- Sanitize HTML before publishing (DOMPurify recommended).
-- If using Google Drive for assets, add an Apps Script proxy to avoid cross-origin/embed restrictions.
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Set up environment variables**
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and add your Google Apps Script URL:
+```env
+REACT_APP_APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
+```
+
+4. **Deploy Google Apps Script**
+   - Open Google Sheets and create a new spreadsheet
+   - Go to Extensions > Apps Script
+   - Copy the contents of `google-apps-script/Code.gs`
+   - Deploy as a web app (Execute as: Me, Who has access: Anyone)
+   - Copy the deployment URL to your `.env` file
+
+5. **Start development server**
+```bash
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📁 Project Structure
+
+```
+src/
+├── api/              # API configuration (Google Apps Script)
+├── assets/           # Static assets
+├── components/       # Reusable UI components
+│   ├── auth/        # Authentication components
+│   └── layout/      # Layout components (Header, Layout)
+├── context/         # React Context providers (Auth, Theme, Toast)
+├── pages/           # Page components (Home, Projects, etc.)
+├── services/        # API service layer (6 entity services)
+├── store/           # Zustand store and slices
+│   └── slices/     # State slices for each entity
+└── utils/          # Utility functions
+```
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 19** - UI library
+- **React Router 6** - Client-side routing
+- **Zustand** - State management with persistence
+- **Tailwind CSS** - Utility-first styling
+- **i18next** - Internationalization
+- **React Icons** - Icon library
+
+### Backend
+- **Google Apps Script** - Serverless backend
+- **Google Sheets** - Database
+- **Google Drive** - Image storage
+
+## 📝 Available Scripts
+
+```bash
+# Development
+npm start          # Start dev server (http://localhost:3000)
+npm test          # Run tests
+npm run build     # Build for production
+npm run eject     # Eject from Create React App (one-way)
+```
+
+## 🎨 Theme System
+
+The application uses a comprehensive theme system with dark/light mode:
+
+```javascript
+const { colors, isDark, toggleTheme } = useTheme()
+
+// Available color tokens:
+colors.text.primary    // Main text
+colors.text.secondary  // Secondary text
+colors.text.muted      // Muted text
+colors.background.primary    // Main background
+colors.background.secondary  // Card backgrounds
+colors.button.primary        // Primary buttons
+colors.button.secondary      // Secondary buttons
+colors.border                // Borders
+```
+
+## 🔌 API Integration
+
+All data is managed through Google Apps Script. The service layer provides:
+
+### Services
+- `projectsService` - Projects CRUD operations
+- `blogsService` - Blog posts management
+- `educationsService` - Education records
+- `workService` - Work experience
+- `referencesService` - References
+- `userService` - User management
+
+### Example Usage
+```javascript
+import usePortfolioStore from './store/store'
+
+function MyComponent() {
+  const projects = usePortfolioStore(s => s.projects)
+  const fetchProjectsRemote = usePortfolioStore(s => s.fetchProjectsRemote)
+  
+  useEffect(() => {
+    fetchProjectsRemote()
+  }, [])
+}
+```
+
+## 🚀 Deployment
+
+### Netlify
+1. Push to GitHub
+2. Connect repository to Netlify
+3. Build settings:
+   - Build command: `npm run build`
+   - Publish directory: `build`
+4. Add environment variable: `REACT_APP_APPS_SCRIPT_URL`
+5. Add `_redirects` file for SPA routing:
+```
+/*    /index.html   200
+```
+
+### Vercel
+1. Import project from GitHub
+2. Framework Preset: Create React App
+3. Add environment variable: `REACT_APP_APPS_SCRIPT_URL`
+4. Deploy
+
+## 📦 Data Management
+
+### Storage
+- **Zustand Store** - Persisted to localStorage
+- **Google Sheets** - Backend database with sheets:
+  - Users, projects, educations, workExperiences, references, blogs
+
+### Image Uploads
+- Images stored in Google Drive
+- URLs returned and saved with records
+- Automatic proxy for cross-origin access
+
+## 🤝 Contributing
+
+Contributions welcome! Please:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+MIT License - feel free to use for personal or commercial projects.
+
+## 🙏 Acknowledgments
+
+- React team for React 19
+- Tailwind CSS for the styling framework
+- Google for Apps Script platform
+- Zustand for simple state management

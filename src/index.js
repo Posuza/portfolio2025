@@ -1,16 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App.jsx';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext"; // added
+import ThemedToastContainer from "./components/ThemedToastContainer";
+import 'react-toastify/dist/ReactToastify.css';
+import "./i18n";
+import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const container = document.getElementById("root");
+const root = createRoot(container);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <ThemedToastContainer />
+      </AuthProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
-
-reportWebVitals();
 
 

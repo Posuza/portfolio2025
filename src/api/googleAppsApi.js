@@ -7,21 +7,24 @@ export function setBaseUrl(url) {
   BASE_URL = url || BASE_URL
 }
 
-export function buildUrl(action) {
+export function buildUrl(action, params = {}) {
   if (!BASE_URL) throw new Error('BASE_URL not configured')
   const u = new URL(BASE_URL)
   u.searchParams.set('action', action)
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) u.searchParams.set(key, value)
+  })
   return u.toString()
 }
 
-export async function callApi(action, method = 'GET', body) {
-  const url = buildUrl(action)
+export async function callApi(action, method = 'GET', body = null, params = {}) {
+  const url = method === 'GET' ? buildUrl(action, params) : buildUrl(action)
   const opts =
     method === 'GET'
       ? { method: 'GET' }
       : {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'plain/text' },
           body: JSON.stringify(body || {}),
         }
 
@@ -34,7 +37,6 @@ export async function callApi(action, method = 'GET', body) {
   }
 }
 
-// named object assigned before default export to satisfy ESLint import/no-anonymous-default-export
 const googleAppsApi = {
   setBaseUrl,
   buildUrl,

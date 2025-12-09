@@ -1,6 +1,6 @@
 import { buildUrl } from '../api/googleAppsApi'
 
-const SHEET_NAME = 'Users'
+const SHEET_NAME = 'projects'
 
 // low-level fetch wrapper
 async function callApi(action, method = 'GET', body) {
@@ -11,7 +11,6 @@ async function callApi(action, method = 'GET', body) {
       ? { method: 'GET' }
       : {
           method: 'POST',
-          // Use a "simple" content-type to avoid browser preflight (Apps Script doesn't handle OPTIONS)
           headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(payload),
         }
@@ -19,60 +18,53 @@ async function callApi(action, method = 'GET', body) {
   try {
     const res = await fetch(url, opts)
     const text = await res.text()
-    // try parse JSON, otherwise return raw text
     try {
       const json = JSON.parse(text)
       return json
     } catch (e) {
-      // non-json response
       throw new Error(`Non-JSON response from API: ${text}`)
     }
   } catch (err) {
-    console.error('[userService] callApi error', action, err)
+    console.error('[projectsService] callApi error', action, err)
     throw err
   }
 }
 
-export async function listUsers() {
+export async function listProjects() {
   return callApi('list', 'GET')
 }
 
-export async function getUser(id) {
-  const res = await listUsers()
+export async function getProject(id) {
+  const res = await listProjects()
   const data = (res && res.data) || []
   return data.find((r) => String(r.id) === String(id)) || null
 }
 
-export async function createUser(user) {
-  return callApi('create', 'POST', user)
+export async function createProject(project) {
+  return callApi('create', 'POST', project)
 }
 
-export async function updateUser(user) {
-  return callApi('update', 'POST', user)
+export async function updateProject(project) {
+  return callApi('update', 'POST', project)
 }
 
-export async function deleteUser(userId) {
-  console.log('userService.deleteUser called with userId:', userId);
-  const result = await callApi('delete', 'POST', { id: userId });
-  console.log('userService.deleteUser result:', result);
-  return result;
+export async function deleteProject(projectId) {
+  return callApi('delete', 'POST', { id: projectId })
 }
 
 export async function uploadImage(filename, dataUrl) {
-  // server-side Code.gs will use its DRIVE_FOLDER_ID by default
   const res = await callApi('uploadImage', 'POST', { filename, dataUrl })
-  // normalize response: expect { url, id } on success
   if (res && res.url) return { url: res.url, id: res.id || null }
   throw new Error(res && res.error ? String(res.error) : 'uploadImage failed')
 }
 
-const userService = {
-  listUsers,
-  getUser,
-  createUser,
-  updateUser,
-  deleteUser,
+const projectsService = {
+  listProjects,
+  getProject,
+  createProject,
+  updateProject,
+  deleteProject,
   uploadImage,
 }
 
-export default userService
+export default projectsService
