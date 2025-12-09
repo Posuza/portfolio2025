@@ -32,9 +32,9 @@ const Home = () => {
         {/* HERO */}
         <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
-            <h1 className={`text-4xl md:text-5xl font-extrabold leading-tight ${colors.text.primary}`}>
+            <h2 className={`text-4xl md:text-5xl font-extrabold leading-tight ${colors.text.primary}`}>
               Paing Hein Thet Mon(Software and IOT Engineer)
-            </h1>
+            </h2>
             <p className={`mt-4 ${colors.text.secondary}`}>
               I build reliable, maintainable web applications and APIs. Specialties: React, Node.js, Google Apps Script,
               cloud integrations, and full-stack product delivery.
