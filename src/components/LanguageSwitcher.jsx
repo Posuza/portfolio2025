@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
-import { FiGlobe, FiChevronDown, FiCheck } from 'react-icons/fi';
+import {FiChevronDown, FiCheck } from 'react-icons/fi';
 
 const languages = [
   { code: 'en', lang: 'English', short: 'EN', flag: '🇺🇸' },
