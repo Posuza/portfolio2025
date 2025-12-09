@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '../context/ThemeContext';
 
 const Container = ({ children, className = '' }) => {  
   return (
