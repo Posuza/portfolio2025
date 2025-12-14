@@ -66,8 +66,8 @@ const Home = () => {
       <Container>
         <div className="pt-10 ">
           {/* HERO */}
-          <div className="max-w-5xl mx-auto px-4 flex flex-col-reverse md:flex-row md:items-center gap-8">
-            <div className="w-full md:w-1/2">
+          <div className="max-w-5xl mx-auto flex flex-col-reverse md:flex-row md:items-center md:justify-between">
+            <div className="w-full md:w-1/2 mt-4">
               <h2
                 className={`text-lg md:text-xl font-extrabold leading-tight ${colors.text.primary}`}
               >
@@ -108,7 +108,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="w-full md:w-1/2 flex justify-center">
+            <div className="w-full md:w-1/2 flex md:justify-end ">
               <div
                 className={`w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-xl overflow-hidden ${colors.background.tertiary} flex items-center justify-center shadow-lg mx-auto`}
               >
