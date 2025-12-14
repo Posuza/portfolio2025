@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/AuthContext";
@@ -6,6 +6,7 @@ import Container from "../Container";
 import Logo from "../Logo";
 import ThemeToggle from "../ThemeToggle";
 import LanguageSwitcher from "../LanguageSwitcher";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const Header = () => {
   const { colors } = useTheme();
@@ -13,6 +14,25 @@ const Header = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [extraOpen, setExtraOpen] = useState(false);
+  const extraRef = useRef(null);
+
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (extraRef.current && !extraRef.current.contains(e.target)) {
+        setExtraOpen(false);
+      }
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") setExtraOpen(false);
+    };
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
 
   const navLinks = [
     { path: "/", label: "Home" },
@@ -21,7 +41,11 @@ const Header = () => {
     { path: "/work-experiences", label: "Work" },
     { path: "/references", label: "References" },
     { path: "/blogs", label: "Blog" },
+    { path: "/contact", label: "Contact" },
   ];
+
+  const firstLinks = navLinks.slice(0, 4);
+  const extraLinks = navLinks.slice(4);
 
   const isActive = (path) => {
     if (path === "/") return location.pathname === "/";
@@ -36,8 +60,58 @@ const Header = () => {
             <Logo size="md" showText />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Compact desktop nav for md (shows first 4 + dots) */}
+          <nav className="hidden md:flex lg:hidden items-center gap-4 lg:gap-6">
+            {firstLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm transition-colors ${
+                  isActive(link.path)
+                    ? `${colors.text.primary} font-semibold border-b-2 border-sky-600`
+                    : `${colors.text.secondary} hover:text-sky-600`
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            <div className="relative" ref={extraRef}>
+              <button
+                onClick={() => setExtraOpen((s) => !s)}
+                className={`p-1 rounded-lg text-xl ${colors.text.secondary} hover:${colors.text.primary}`}
+                aria-haspopup="true"
+                aria-expanded={extraOpen}
+                aria-label="More"
+              >
+                <BiDotsVerticalRounded />
+              </button>
+
+              {extraOpen && (
+                <div
+                  className={`absolute right-0 mt-2 w-48 ${colors.background.primary} rounded-lg shadow-lg border ${colors.border} py-2 z-50`}
+                >
+                  {extraLinks.map((link) => (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      onClick={() => setExtraOpen(false)}
+                      className={`block px-4 py-2 text-sm transition-colors ${
+                        isActive(link.path)
+                          ? `${colors.text.primary} font-medium`
+                          : `${colors.text.secondary} hover:${colors.background.secondary}`
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </nav>
+
+          {/* Full desktop nav for lg+ (show all links) */}
+          <nav className="hidden lg:flex items-center gap-4 lg:gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -56,7 +130,7 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <LanguageSwitcher />
-            
+
             {/* User Dropdown */}
             {user && (
               <div className="hidden md:block relative">
@@ -72,7 +146,7 @@ const Header = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                
+
                 {userMenuOpen && (
                   <div className={`absolute right-0 mt-2 w-48 ${colors.background.primary} rounded-lg shadow-lg border ${colors.border} py-2 z-50`}>
                     <Link
@@ -86,7 +160,7 @@ const Header = () => {
                       onClick={() => {
                         logout();
                         setUserMenuOpen(false);
-                        window.location.href = '/';
+                        window.location.href = "/";
                       }}
                       className={`w-full text-left px-4 py-2 text-sm ${colors.text.secondary} hover:${colors.background.secondary}`}
                     >
@@ -96,7 +170,7 @@ const Header = () => {
                 )}
               </div>
             )}
-            
+
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -150,7 +224,7 @@ const Header = () => {
                   <button
                     onClick={() => {
                       logout();
-                      window.location.href = '/';
+                      window.location.href = "/";
                       setMobileMenuOpen(false);
                     }}
                     className={`px-4 py-2 rounded-lg ${colors.button.secondary} text-sm font-medium`}

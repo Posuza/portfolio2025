@@ -30,7 +30,7 @@ const Logo = ({
       {/* Main Logo with Text */}
       {showText && (
         <div className="flex flex-col justify-center items-start">
-          <h1 className={`text-lg gap-1 font-bold ${colors.text.secondary}`}>Paing Hein Thet Mon</h1>
+          <h1 className={`text-sm md:text-lg font-bold ${colors.text.secondary}`}>Paing Hein Thet Mon</h1>
 
           {/* <img 
             src={logo} 

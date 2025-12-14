@@ -16,6 +16,7 @@ import Blogs from "./pages/Blogs";
 import BlogDetail from "./pages/BlogDetail";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Contact from "./pages/Contact";
 
 const router = createBrowserRouter([
   { path: "/auth", element: <Auth />, errorElement: <ErrorNotFound /> },
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: "references/:id", element: <ReferenceDetail /> },
       { path: "blogs", element: <Blogs /> },
       { path: "blogs/:id", element: <BlogDetail /> },
+      { path: "contact", element: <Contact /> },
 
       // Admin/Protected pages
       { path: "dashboard", element: <ProtectedRoute><Dashboard /></ProtectedRoute> },
