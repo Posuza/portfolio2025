@@ -58,6 +58,20 @@ export async function deleteUser(userId) {
   return result;
 }
 
+export async function login(credentials) {
+  console.log('userService.login called with:', credentials.username);
+  const result = await callApi('login', 'POST', credentials);
+  console.log('userService.login result:', result);
+  return result;
+}
+
+export async function logout(userId) {
+  console.log('userService.logout called with userId:', userId);
+  const result = await callApi('logout', 'POST', { userId });
+  console.log('userService.logout result:', result);
+  return result;
+}
+
 export async function uploadImage(filename, dataUrl) {
   // server-side Code.gs will use its DRIVE_FOLDER_ID by default
   const res = await callApi('uploadImage', 'POST', { filename, dataUrl })
@@ -72,6 +86,8 @@ const userService = {
   createUser,
   updateUser,
   deleteUser,
+  login,
+  logout,
   uploadImage,
 }
 

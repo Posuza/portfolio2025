@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { FaBox, FaBook, FaGraduationCap, FaBriefcase, FaUsers, FaUser, FaPlus, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 import Container from "../components/Container";
+import DashboardTable from "../components/DashboardTable";
 import usePortfolioStore from "../store/store";
 import showToast from "../utils/toast";
 
@@ -14,6 +16,7 @@ export default function Dashboard() {
   const [formData, setFormData] = useState({});
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   
   // Store data
   const projects = usePortfolioStore((s) => s.projects || []);
@@ -73,12 +76,12 @@ export default function Dashboard() {
   }, [fetchProjectsRemote, fetchBlogsRemote, fetchEducationsRemote, fetchWorkRemote, fetchReferencesRemote, fetchRemote]);
 
   const tabs = [
-    { id: 'projects', label: 'Projects', data: projects, icon: '📦' },
-    { id: 'blogs', label: 'Blogs', data: blogs, icon: '📝' },
-    { id: 'educations', label: 'Education', data: educations, icon: '🎓' },
-    { id: 'workExperiences', label: 'Work', data: workExperiences, icon: '💼' },
-    { id: 'references', label: 'References', data: references, icon: '👥' },
-    { id: 'users', label: 'Users', data: users, icon: '👤' },
+    { id: 'projects', label: 'Projects', data: projects, icon: FaBox },
+    { id: 'blogs', label: 'Blogs', data: blogs, icon: FaBook },
+    { id: 'educations', label: 'Education', data: educations, icon: FaGraduationCap },
+    { id: 'workExperiences', label: 'Work', data: workExperiences, icon: FaBriefcase },
+    { id: 'references', label: 'References', data: references, icon: FaUsers },
+    { id: 'users', label: 'Users', data: users, icon: FaUser },
   ];
 
   const getFieldsForTab = (tabId) => {
@@ -154,6 +157,7 @@ export default function Dashboard() {
     setFormData({});
     setImageFile(null);
     setImagePreview('');
+    setShowPassword(false);
   };
 
   const handleInputChange = (e) => {
@@ -322,128 +326,64 @@ export default function Dashboard() {
       <div className="py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className={`text-4xl font-bold mb-2 ${colors.text.primary}`}>Admin Dashboard</h1>
-          <p className={colors.text.secondary}>Manage all portfolio content from one place.</p>
+          <h1 className={`text-2xl lg:text-3xl font-bold  ${colors.text.primary}`}>Admin Dashboard</h1>
+          <p className={`${colors.text.secondary} text-sm md:text-base`}>Manage all portfolio content from one place.</p>
         </div>
 
         {/* Tabs */}
-        <div className={`${colors.background.primary} rounded-lg border ${colors.border} overflow-hidden mb-6`}>
-          <div className="flex overflow-x-auto">
+        <div className={`mb-5 rounded-lg border ${colors.border} overflow-x-auto`}>
+          <div className={`flex`}>
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => !submitting && setActiveTab(tab.id)}
                 disabled={submitting}
-                className={`flex items-center gap-2 px-6 py-4 whitespace-nowrap transition-colors border-b-2 ${
+                className={`flex items-center gap-1 md:gap-1.5 lg:gap-2 px-5 md:px-5 lg:px-6 pt-5 pb-2 md:py-3.5 lg:py-4 whitespace-nowrap transition-colors border-b-2 ${
                   activeTab === tab.id
-                    ? `border-sky-600 ${colors.text.primary} ${colors.background.secondary}`
+                    ? `border-sky-600 ${colors.text.primary} ${colors.background.primary}`
                     : `border-transparent ${colors.text.secondary} hover:${colors.background.secondary}`
                 } ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                <span className="text-xl">{tab.icon}</span>
-                <span className="font-medium">{tab.label}</span>
-                <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${colors.background.tertiary}`}>
-                  {tab.data.length}
-                </span>
+                <div className="relative">
+                  <span className="text-lg lg:text-xl"><tab.icon /></span>
+                  <span className={`absolute -top-3 -right-3 px-1.5 py-0.5 text-[10px]  rounded-full ${colors.background.tertiary}`}>
+                    {tab.data.length}
+                  </span>
+                </div>
+                <span className="hidden md:inline font-medium text-xs md:text-sm">{tab.label}</span>
               </button>
             ))}
           </div>
         </div>
+        
+        {/* tag body */}
+
 
         {/* Action Bar */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-2">
           <h2 className={`text-2xl font-semibold ${colors.text.primary}`}>
             {tabs.find(t => t.id === activeTab)?.label || 'Items'}
           </h2>
           <button
             onClick={() => openModal('create')}
             disabled={submitting}
-            className={`${colors.button.primary} px-6 py-2 rounded-lg transition flex items-center gap-2 ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`${colors.button.primary} px-2  lg:px-4 py-2  rounded-lg transition flex items-center gap-2 ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-            Add New
+            <FaPlus className="w-5 h-5" />
+            <span className="hidden lg:inline">Add New</span>
           </button>
         </div>
 
         {/* Data Table */}
-        {currentData.length === 0 ? (
-          <div className={`${colors.background.secondary} rounded-lg p-12 text-center`}>
-            <p className={colors.text.secondary}>No items found. Click "Add New" to create one.</p>
-          </div>
-        ) : (
-          <div className={`${colors.background.primary} rounded-lg border ${colors.border} overflow-hidden`}>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className={`${colors.background.secondary} border-b ${colors.border}`}>
-                  <tr>
-                    <th className={`px-6 py-3 text-left text-xs font-medium ${colors.text.muted} uppercase`}>
-                      ID
-                    </th>
-                    {currentFields.slice(0, 3).map((field) => (
-                      <th key={field.name} className={`px-6 py-3 text-left text-xs font-medium ${colors.text.muted} uppercase`}>
-                        {field.label}
-                      </th>
-                    ))}
-                    <th className={`px-6 py-3 text-right text-xs font-medium ${colors.text.muted} uppercase`}>
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {currentData.map((item) => (
-                    <tr key={item.id} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                      <td className={`px-6 py-4 whitespace-nowrap text-sm ${colors.text.muted}`}>
-                        #{item.id}
-                      </td>
-                      {currentFields.slice(0, 3).map((field) => (
-                        <td key={field.name} className={`px-6 py-4 text-sm ${colors.text.secondary} max-w-xs truncate`}>
-                          {field.type === 'file' ? (
-                            item[field.name] ? '✓ Image' : '—'
-                          ) : field.type === 'textarea' ? (
-                            <span className="line-clamp-2">{item[field.name] || '—'}</span>
-                          ) : (
-                            item[field.name] || '—'
-                          )}
-                        </td>
-                      ))}
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
-                        <button
-                          onClick={() => openModal('edit', item)}
-                          disabled={submitting}
-                          className={`text-sky-600 hover:text-sky-700 mr-4 ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-                          title="Edit"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => handleDelete(item)}
-                          disabled={submitting}
-                          className={`text-red-600 hover:text-red-700 ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-                          title="Delete"
-                        >
-                          {submitting ? (
-                            <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                          ) : (
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                          )}
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+        <DashboardTable
+          data={currentData}
+          fields={currentFields}
+          onEdit={(item) => openModal('edit', item)}
+          onDelete={handleDelete}
+          loading={loading}
+          submitting={submitting}
+        />
+        </div>
 
         {/* Modal */}
         {isModalOpen && (
@@ -496,6 +436,24 @@ export default function Dashboard() {
                             <img src={imagePreview} alt="Preview" className="mt-2 h-32 w-32 object-cover rounded-lg" />
                           )}
                         </div>
+                      ) : field.type === 'password' ? (
+                        <div className="relative">
+                          <input
+                            type={showPassword ? 'text' : 'password'}
+                            name={field.name}
+                            value={formData[field.name] || ''}
+                            onChange={handleInputChange}
+                            required={field.required}
+                            className={`w-full px-4 py-2 pr-12 rounded-lg border ${colors.border} ${colors.background.secondary} ${colors.text.primary} focus:ring-2 focus:ring-sky-500 focus:border-transparent`}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className={`absolute right-3 top-1/2 -translate-y-1/2 ${colors.text.secondary} hover:${colors.text.primary} transition`}
+                          >
+                            {showPassword ? <FaEyeSlash className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
+                          </button>
+                        </div>
                       ) : (
                         <input
                           type={field.type}
@@ -541,7 +499,7 @@ export default function Dashboard() {
             </div>
           </div>
         )}
-      </div>
+
     </Container>
   );
 }

@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { useTheme } from "../context/ThemeContext";
 import Container from "../components/Container";
 import usePortfolioStore from "../store/store";
@@ -38,6 +43,11 @@ const SECTIONS = [
   },
 ];
 
+const SKILLS = [
+  "React", "Node.js", "JavaScript", "Python", "Docker", "Kubernetes",
+  "AWS", "MongoDB", "PostgreSQL", "Git", "IoT", "Quantum Computing"
+];
+
 const Home = () => {
   const { colors } = useTheme();
   const projects = usePortfolioStore((s) => s.projects || []);
@@ -46,6 +56,10 @@ const Home = () => {
   const fetchReferencesRemote = usePortfolioStore(
     (s) => s.fetchReferencesRemote
   );
+  const blogs = usePortfolioStore((s) => s.blogs || []);
+  const fetchBlogsRemote = usePortfolioStore((s) => s.fetchBlogsRemote);
+  const workExperiences = usePortfolioStore((s) => s.workExperiences || []);
+  const fetchWorkRemote = usePortfolioStore((s) => s.fetchWorkRemote);
 
   useEffect(() => {
     if (typeof fetchProjectsRemote === "function") {
@@ -58,6 +72,18 @@ const Home = () => {
       fetchReferencesRemote().catch(() => {});
     }
   }, [fetchReferencesRemote]);
+
+  useEffect(() => {
+    if (typeof fetchBlogsRemote === "function") {
+      fetchBlogsRemote().catch(() => {});
+    }
+  }, [fetchBlogsRemote]);
+
+  useEffect(() => {
+    if (typeof fetchWorkRemote === "function") {
+      fetchWorkRemote().catch(() => {});
+    }
+  }, [fetchWorkRemote]);
 
   const preview = (projects || []).slice(0, 6);
 
@@ -156,7 +182,7 @@ const Home = () => {
               <h2
                 className={`text-xl sm:text-2xl font-semibold ${colors.text.primary}`}
               >
-                Selected Projects
+                Recent Projects
               </h2>
               <Link
                 to="/projects"
@@ -252,8 +278,200 @@ const Home = () => {
             )}
           </section>
 
-          {/* RECOMMENDATIONS / TESTIMONIALS */}
-          <section className="max-w-5xl mx-auto px-4 mt-12 sm:mt-16">
+          {/* SKILLS */}
+          <section className="max-w-7xl mx-auto px-4 mt-16">
+            <h2
+              className={`text-xl sm:text-2xl font-semibold mb-6 ${colors.text.primary}`}
+            >
+              Skills & Tech Stack
+            </h2>
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              {SKILLS.map((skill) => (
+                <span
+                  key={skill}
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm rounded-full ${colors.background.primary} border ${colors.border} ${colors.text.secondary} hover:${colors.background.secondary} transition`}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </section>
+
+          {/* EXPERIENCE TIMELINE */}
+          <section className="max-w-7xl mx-auto px-4 mt-16">
+            <h2
+              className={`text-xl sm:text-2xl font-semibold mb-6 ${colors.text.primary}`}
+            >
+              Work Experience
+            </h2>
+            {workExperiences.length === 0 ? (
+              <div
+                className={`${colors.background.secondary} rounded-lg p-6 sm:p-8 text-center`}
+              >
+                <p className={`text-sm sm:text-base ${colors.text.secondary}`}>
+                  No work experience added yet.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-4 sm:space-y-6">
+                {workExperiences.slice(0, 4).map((exp, idx) => (
+                  <div
+                    key={exp.id || idx}
+                    className={`${colors.background.primary} border ${colors.border} rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow`}
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                      <div className="flex-1">
+                        <h3
+                          className={`text-lg sm:text-xl font-semibold ${colors.text.primary}`}
+                        >
+                          {exp.position}
+                        </h3>
+                        <p
+                          className={`text-sm sm:text-base ${colors.text.secondary} mt-1`}
+                        >
+                          {exp.company}
+                        </p>
+                      </div>
+                      <p className={`text-xs sm:text-sm ${colors.text.muted} whitespace-nowrap`}>
+                        {exp.startDate && new Date(exp.startDate).getFullYear()} -{" "}
+                        {exp.endDate
+                          ? new Date(exp.endDate).getFullYear()
+                          : "Present"}
+                      </p>
+                    </div>
+                    {exp.description && (
+                      <p
+                        className={`text-sm sm:text-base ${colors.text.secondary} mt-3 line-clamp-2`}
+                      >
+                        {exp.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+                {workExperiences.length > 4 && (
+                  <Link
+                    to="/work-experiences"
+                    className={`inline-block ${colors.button.secondary} px-4 py-2 rounded-lg text-sm transition mt-2`}
+                  >
+                    View all →
+                  </Link>
+                )}
+              </div>
+            )}
+          </section>
+
+          {/* FEATURED BLOG POSTS */}
+          <section className="max-w-7xl mx-auto px-4 mt-12 sm:mt-16">
+            <div className="flex items-center justify-between mb-6">
+              <h2
+                className={`text-xl sm:text-2xl font-semibold ${colors.text.primary}`}
+              >
+                Latest Articles
+              </h2>
+              <Link
+                to="/blogs"
+                className={`${colors.button.secondary} px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm transition`}
+              >
+                See all →
+              </Link>
+            </div>
+
+            {blogs.length === 0 ? (
+              <div
+                className={`${colors.background.secondary} rounded-lg p-8 sm:p-12 text-center`}
+              >
+                <p className={`text-sm sm:text-base ${colors.text.secondary}`}>
+                  No blog posts yet.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {blogs.slice(0, 3).map((post) => (
+                  <article
+                    key={post.id}
+                    className={`${colors.background.primary} border ${colors.border} rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex flex-col`}
+                  >
+                    {post.blogImageUrl && (
+                      <div className="w-full h-32 sm:h-40 bg-gradient-to-br from-purple-400 to-pink-600">
+                        <DriveImage
+                          src={post.blogImageUrl}
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                          fallback={<div className="w-full h-full bg-gradient-to-br from-purple-400 to-pink-600" />}
+                        />
+                      </div>
+                    )}
+                    <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                      <h3
+                        className={`font-semibold text-base sm:text-lg ${colors.text.primary}`}
+                      >
+                        {post.title}
+                      </h3>
+                      <p
+                        className={`text-xs sm:text-sm ${colors.text.muted} mt-1`}
+                      >
+                        {post.date
+                          ? new Date(post.date).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            })
+                          : "No date"}
+                      </p>
+                      <p
+                        className={`text-sm sm:text-base ${colors.text.secondary} mt-2 line-clamp-2 flex-1`}
+                      >
+                        {post.summary}
+                      </p>
+                      <Link
+                        to={`/blogs/${post.id || ""}`}
+                        className={`text-sm ${colors.button.secondary} px-3 py-1 rounded transition inline-block mt-3 w-fit`}
+                      >
+                        Read more →
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+
+          {/* CTA SECTION */}
+          <section className="max-w-4xl mx-auto px-4 mt-12 sm:mt-16">
+            <div
+              className={`${colors.background.primary} border ${colors.border} rounded-lg sm:rounded-xl p-6 sm:p-10 md:p-12 text-center`}
+            >
+              <h2
+                className={`text-xl sm:text-2xl md:text-3xl font-bold ${colors.text.primary}`}
+              >
+                Let's Work Together
+              </h2>
+              <p
+                className={`text-sm sm:text-base ${colors.text.secondary} mt-3 sm:mt-4 max-w-2xl mx-auto`}
+              >
+                I'm always open to new opportunities and interesting projects. Feel free to reach out!
+              </p>
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`inline-block text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition ${colors.button.primary}`}
+                >
+                  Download Resume
+                </a>
+                <Link
+                  to="/contact"
+                  className={`inline-block text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition ${colors.button.secondary}`}
+                >
+                  Get in Touch
+                </Link>
+              </div>
+            </div>
+          </section>
+
+          
+          <section className="max-w-6xl mx-auto px-4 mt-12 sm:mt-16">
             <div className="flex items-start sm:items-center justify-between mb-4 sm:mb-6">
               <h2
                 className={`text-xl sm:text-2xl font-semibold ${colors.text.primary}`}
@@ -264,7 +482,7 @@ const Home = () => {
                 to="/references"
                 className={`${colors.button.secondary} px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm transition`}
               >
-                View all
+                See all →
               </Link>
             </div>
             {references.length === 0 ? (
@@ -276,67 +494,82 @@ const Home = () => {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                {references.slice(0, 3).map((ref) => (
-                  <div
-                    key={ref.id}
-                    className={`${colors.background.primary} border ${colors.border} rounded-lg p-4 sm:p-6 shadow hover:shadow-lg transition`}
+              <div className="flex justify-center w-full">
+                <div className="swiper-container w-full">
+                  <Swiper
+                    modules={[Navigation, Pagination]}
+                    navigation
+                    pagination={{ clickable: true }}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    className=""
                   >
-                    <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">
-                        <DriveImage
-                          src={ref.referenceImageUrl}
-                          alt={ref.name}
-                          className="w-full h-full object-cover"
-                          fallback={
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
+                {references.map((ref) => (
+                  <SwiperSlide key={ref.id}>
+                    <div
+                      className={`${colors.background.primary} border ${colors.border} rounded-lg p-4 sm:p-6 shadow hover:shadow-lg transition h-full flex flex-col items-center text-center`}
+                    >
+                      <div>
+
+                      <div className="flex flex-row items-center gap-3 sm:gap-4 mb-3 sm:mb-4 w-full">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">
+                          <DriveImage
+                            src={ref.referenceImageUrl}
+                            alt={ref.name}
+                            className="w-full h-full object-cover"
+                            fallback={
+                              <svg
+                                className="w-6 h-6 text-white"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                              </svg>
+                            }
+                          />
+                        </div>
+                        <div className="w-full text-center">
+                          <h3
+                            className={`text-base sm:text-lg font-semibold ${colors.text.primary}`}
+                          >
+                            {ref.name}
+                          </h3>
+                          {ref.relationship && (
+                            <p
+                              className={`text-[11px] sm:text-xs ${colors.text.secondary}`}
                             >
-                              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                            </svg>
-                          }
-                        />
+                              {ref.relationship}
+                            </p>
+                          )}
+                          {ref.company && (
+                            <p
+                              className={`text-[11px] sm:text-xs ${colors.text.muted}`}
+                            >
+                              {ref.company}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3
-                          className={`text-base sm:text-lg font-semibold ${colors.text.primary} truncate`}
+                      </div>
+                      {ref.testimonial && (
+                        <p
+                          className={`text-sm sm:text-base italic ${colors.text.secondary} mt-2 line-clamp-4`}
                         >
-                          {ref.name}
-                        </h3>
-                        {ref.relationship && (
-                          <p
-                            className={`text-[11px] sm:text-xs ${colors.text.secondary} truncate`}
-                          >
-                            {ref.relationship}
-                          </p>
-                        )}
-                        {ref.company && (
-                          <p
-                            className={`text-[11px] sm:text-xs ${colors.text.muted} truncate`}
-                          >
-                            {ref.company}
-                          </p>
-                        )}
-                      </div>
+                          {ref.testimonial}
+                        </p>
+                      )}
+                      {ref.contact && (
+                        <p
+                          className={`text-xs sm:text-sm mt-2 ${colors.text.muted}`}
+                        >
+                          {ref.contact}
+                        </p>
+                      )}
                     </div>
-                    {ref.testimonial && (
-                      <p
-                        className={`text-sm sm:text-base italic ${colors.text.secondary} mt-2 line-clamp-4`}
-                      >
-                        {ref.testimonial}
-                      </p>
-                    )}
-                    {ref.contact && (
-                      <p
-                        className={`text-xs sm:text-sm mt-2 ${colors.text.muted}`}
-                      >
-                        {ref.contact}
-                      </p>
-                    )}
-                  </div>
+                  </SwiperSlide>
                 ))}
+                  </Swiper>
+                </div>
               </div>
             )}
           </section>
