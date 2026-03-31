@@ -1,0 +1,10 @@
+[
+  {
+    "id": "1",
+    "name": "Sample Visitor",
+    "email": "visitor@example.com",
+    "subject": "Portfolio Inquiry",
+    "message": "Hello, I would like to discuss your work.",
+    "createdAt": "2026-03-31T00:00:00.000Z"
+  }
+]

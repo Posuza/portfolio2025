@@ -1,0 +1,112 @@
+[
+  {
+    "id": "1",
+    "company": "Remote / Bangkok, Thailand",
+    "position": "Freelancer (English Teacher, Help-Desk, Designer)",
+    "startDate": "2024-01-01",
+    "endDate": "",
+    "description": "Full-time student at Mahachulalongkornrajavidyalay University while handling freelance and part-time English tutoring. Provided English tutoring for skill development and academic success (small-group and one-on-one). Offered remote technical support for hardware/software issues via remote access tools. Conducted IT training needs analysis and developed graphic assets (logos, icons, illustrations) for marketing campaigns.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "2",
+    "company": "Man National Education Council, Myanmar",
+    "position": "Office IT Assistant and Computer Technology Instructor",
+    "startDate": "2020-01-01",
+    "endDate": "2023-12-31",
+    "description": "Managed technical support, maintenance, and troubleshooting for hardware, software, and network issues. Configured network devices and implemented security measures for system integrity. Delivered computer technology lessons and organized coding clubs to build student problem-solving skills.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "3",
+    "company": "Skate and Laser Playground (Mo Mo Play Sub-branch), Myanmar",
+    "position": "Assistant Branch Manager",
+    "startDate": "2016-01-01",
+    "endDate": "2019-01-31",
+    "description": "Oversaw business operations, managed staff, and maintained customer service standards. Implemented marketing strategies to attract and retain customers. Analyzed financial data for operational decisions. Reviewed employee performance and contributed to appraisals. Led coaching, training, and mentoring for staff.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "4",
+    "company": "Man Nation School (Yathaedaung), Myanmar",
+    "position": "Secondary School Teacher",
+    "startDate": "2013-01-01",
+    "endDate": "2014-07-31",
+    "description": "Established clear lesson objectives and delivered individualized instruction using differentiated techniques. Assessed student learning regularly and fostered critical thinking and independent problem-solving skills.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "5",
+    "company": "Mon Women Organization",
+    "position": "Sexual Assault Victim Advocate (Part-Time)",
+    "startDate": "2014-02-01",
+    "endDate": "2018-10-31",
+    "description": "Responded to crisis calls, collaborated with community partners, and provided trauma-informed care training. Facilitated counseling sessions and worked closely with law enforcement personnel.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "6",
+    "company": "Mon Language Development Association",
+    "position": "Summer Language Teacher (Mon)",
+    "startDate": "2012-09-01",
+    "endDate": "2015-03-31",
+    "description": "Encouraged language practice, integrated grammar instruction, and created engaging learning activities.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "7",
+    "company": "GUTS Investigation Security Guard Company Limited, Bangkok, Thailand",
+    "position": "Associate Software Engineer",
+    "startDate": "2025-01-01",
+    "endDate": "",
+    "description": "Applying software development, infrastructure management, and IoT solution skills in production projects.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "8",
+    "company": "Forage (Virtual Internship)",
+    "position": "AWS APAC Solutions Architecture Intern",
+    "startDate": "2025-02-01",
+    "endDate": "2025-02-28",
+    "description": "Designed a simple scalable hosting architecture on Elastic Beanstalk and explained architecture and cost model to client stakeholders.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "9",
+    "company": "Forage (Virtual Internship)",
+    "position": "Entrepreneurship & Innovation Web Development Intern (City of Moreton Bay)",
+    "startDate": "2025-02-01",
+    "endDate": "2025-02-28",
+    "description": "Completed web planning simulation, created sitemap/user flow, and built a landing page with HTML/CSS.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "10",
+    "company": "Forage (Virtual Internship)",
+    "position": "J.P. Morgan Software Engineering Intern",
+    "startDate": "2024-08-01",
+    "endDate": "2024-08-31",
+    "description": "Set up local dev environment, fixed repository issues, and used Perspective library to produce live data-feed graph visualizations.",
+    "workImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "11",
+    "company": "O Bhan Mi (Restaurant), Petaling Jaya, Malaysia",
+    "position": "Assistant Manager and Supervisor",
+    "startDate": "2013-04-01",
+    "endDate": "2016-08-31",
+    "description": "Handled customer complaints, daily execution, order/staff management, business operations, financial management, and product quality control.",
+    "workImageUrl": "",
+    "imageId": ""
+  }
+]

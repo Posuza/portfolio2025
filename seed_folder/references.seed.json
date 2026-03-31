@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "TODO_REFERENCE_NAME_1",
+    "relationship": "TODO_RELATIONSHIP",
+    "contact": "goechailon@gmail.com",
+    "referenceImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "2",
+    "name": "TODO_REFERENCE_NAME_2",
+    "relationship": "TODO_RELATIONSHIP",
+    "contact": "mrthenrythang@gmail.com",
+    "referenceImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "3",
+    "name": "TODO_REFERENCE_NAME_3",
+    "relationship": "TODO_RELATIONSHIP",
+    "contact": "researcherwinhtut@gmail.com",
+    "referenceImageUrl": "",
+    "imageId": ""
+  }
+]

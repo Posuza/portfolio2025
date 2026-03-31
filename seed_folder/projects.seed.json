@@ -1,0 +1,10 @@
+[
+  {
+    "id": "1",
+    "name": "TODO_PROJECT_NAME",
+    "description": "TODO_PROJECT_DESCRIPTION",
+    "skills": "TODO_COMMA_SEPARATED_SKILLS",
+    "projectsImageUrl": "",
+    "imageId": ""
+  }
+]

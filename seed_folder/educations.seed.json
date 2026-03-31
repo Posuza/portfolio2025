@@ -1,0 +1,86 @@
+[
+  {
+    "id": "1",
+    "school": "Mahachulalongkornrajavidyalaya University, Thailand",
+    "degree": "Diploma in English Teacher Candidate",
+    "field": "English Education",
+    "skills": "English Language for Teachers, Classroom Management",
+    "startYear": "",
+    "endYear": "2025",
+    "description": "Expected graduation: Jun 2025. Relevant coursework: English Language for Teachers, Classroom Management.",
+    "educationImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "2",
+    "school": "Womanian Global Quantum & AI Program",
+    "degree": "Diplomas in Quantum Computing, Algorithm, Quantum ML",
+    "field": "Quantum Computing and AI",
+    "skills": "PennyLane Quantum Machine Learning, AI Application, Classiq Fundamental Workshop, Quantum Algorithm Design",
+    "startYear": "",
+    "endYear": "2024",
+    "description": "Completed in August 2024. Certificates: PennyLane Quantum Machine Learning, AI Application, Classiq Fundamental Workshop, Quantum Algorithm Design.",
+    "educationImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "3",
+    "school": "National Cyber City",
+    "degree": "Diploma in Computing Level-2 in Advanced Python and AI",
+    "field": "Computing and Artificial Intelligence",
+    "skills": "Advanced Python, Software and Web Development, Network Programming, AI, Machine Learning",
+    "startYear": "",
+    "endYear": "2023",
+    "description": "Completed in December 2023. Relevant coursework: Advanced Python, Software and Web Development, Network Programming, AI, Machine Learning.",
+    "educationImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "4",
+    "school": "Royal Myanmar Institute of Technology",
+    "degree": "Professional Diploma in Computing and IT",
+    "field": "Computing and Information Technology",
+    "skills": "Computing, ICT, Database Management",
+    "startYear": "",
+    "endYear": "2021",
+    "description": "Completed in December 2021. Relevant coursework: Computing, ICT, Database Management.",
+    "educationImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "5",
+    "school": "Yangon University",
+    "degree": "BA in English",
+    "field": "English",
+    "skills": "English Literature, Public Speaking, Communication Skills, Research Writing",
+    "startYear": "",
+    "endYear": "2018",
+    "description": "Completed in November 2018. Relevant coursework: English Literature, Public Speaking, Communication Skills, Research Writing.",
+    "educationImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "6",
+    "school": "Womanium & WISER Quantum Program",
+    "degree": "Course in Quantum Computing",
+    "field": "Quantum Computing",
+    "skills": "Quantum Computing, Quantum Algorithms",
+    "startYear": "2025",
+    "endYear": "2025",
+    "description": "May 2025 - July 2025.",
+    "educationImageUrl": "",
+    "imageId": ""
+  },
+  {
+    "id": "7",
+    "school": "On Sky Global",
+    "degree": "Diploma in Computing and Computer Studies",
+    "field": "Computer Science",
+    "skills": "Computing, Computer Studies",
+    "startYear": "2022",
+    "endYear": "2022",
+    "description": "February 2022 - December 2022.",
+    "educationImageUrl": "",
+    "imageId": ""
+  }
+]

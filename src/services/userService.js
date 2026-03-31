@@ -76,8 +76,10 @@ export async function uploadImage(filename, dataUrl) {
   // server-side Code.gs will use its DRIVE_FOLDER_ID by default
   const res = await callApi('uploadImage', 'POST', { filename, dataUrl })
   // normalize response: expect { url, id } on success
-  if (res && res.url) return { url: res.url, id: res.id || null }
-  throw new Error(res && res.error ? String(res.error) : 'uploadImage failed')
+  const url = (res && res.data && res.data.url) || (res && res.url) || null
+  const id = (res && res.data && res.data.id) || (res && res.id) || null
+  if (url) return { url, id }
+  throw new Error((res && res.error) ? String(res.error) : 'uploadImage failed')
 }
 
 const userService = {

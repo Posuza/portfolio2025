@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaBox, FaBook, FaGraduationCap, FaBriefcase, FaUsers, FaUser, FaPlus, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaBox, FaBook, FaGraduationCap, FaBriefcase, FaUsers, FaUser, FaTag, FaPlus, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 import Container from "../components/Container";
 import DashboardTable from "../components/DashboardTable";
@@ -24,6 +24,7 @@ export default function Dashboard() {
   const educations = usePortfolioStore((s) => s.educations || []);
   const workExperiences = usePortfolioStore((s) => s.workExperiences || []);
   const references = usePortfolioStore((s) => s.references || []);
+  const skills = usePortfolioStore((s) => s.skills || []);
   const users = usePortfolioStore((s) => s.users || []);
   
   // Fetch functions
@@ -32,6 +33,7 @@ export default function Dashboard() {
   const fetchEducationsRemote = usePortfolioStore((s) => s.fetchEducationsRemote);
   const fetchWorkRemote = usePortfolioStore((s) => s.fetchWorkRemote);
   const fetchReferencesRemote = usePortfolioStore((s) => s.fetchReferencesRemote);
+  const fetchSkillsRemote = usePortfolioStore((s) => s.fetchSkillsRemote);
   const fetchRemote = usePortfolioStore((s) => s.fetchRemote);
   
   // CRUD functions
@@ -55,6 +57,10 @@ export default function Dashboard() {
   const updateReferenceRemote = usePortfolioStore((s) => s.updateReferenceRemote);
   const deleteReferenceRemote = usePortfolioStore((s) => s.deleteReferenceRemote);
   
+  const createSkillRemote = usePortfolioStore((s) => s.createSkillRemote);
+  const updateSkillRemote = usePortfolioStore((s) => s.updateSkillRemote);
+  const deleteSkillRemote = usePortfolioStore((s) => s.deleteSkillRemote);
+  
   const createRemoteWithImage = usePortfolioStore((s) => s.createRemoteWithImage);
   const updateRemoteWithImage = usePortfolioStore((s) => s.updateRemoteWithImage);
   const deleteRemote = usePortfolioStore((s) => s.deleteRemote);
@@ -68,12 +74,13 @@ export default function Dashboard() {
         fetchEducationsRemote(),
         fetchWorkRemote(),
         fetchReferencesRemote(),
+        fetchSkillsRemote(),
         fetchRemote(),
       ]);
       setLoading(false);
     };
     loadData();
-  }, [fetchProjectsRemote, fetchBlogsRemote, fetchEducationsRemote, fetchWorkRemote, fetchReferencesRemote, fetchRemote]);
+  }, [fetchProjectsRemote, fetchBlogsRemote, fetchEducationsRemote, fetchWorkRemote, fetchReferencesRemote, fetchSkillsRemote, fetchRemote]);
 
   const tabs = [
     { id: 'projects', label: 'Projects', data: projects, icon: FaBox },
@@ -81,6 +88,7 @@ export default function Dashboard() {
     { id: 'educations', label: 'Education', data: educations, icon: FaGraduationCap },
     { id: 'workExperiences', label: 'Work', data: workExperiences, icon: FaBriefcase },
     { id: 'references', label: 'References', data: references, icon: FaUsers },
+    { id: 'skills', label: 'Skills', data: skills, icon: FaTag },
     { id: 'users', label: 'Users', data: users, icon: FaUser },
   ];
 
@@ -122,6 +130,10 @@ export default function Dashboard() {
         { name: 'phone', label: 'Phone', type: 'tel' },
         { name: 'contact', label: 'Contact Info', type: 'textarea' },
         { name: 'referenceImageUrl', label: 'Image', type: 'file' },
+      ],
+      skills: [
+        { name: 'name', label: 'Skill Name', type: 'text', required: true },
+        { name: 'category', label: 'Category', type: 'text', required: true },
       ],
       users: [
         { name: 'username', label: 'Username', type: 'text', required: true },
@@ -221,6 +233,7 @@ export default function Dashboard() {
           case 'educations': result = await createEducationRemote(payload); break;
           case 'workExperiences': result = await createWorkRemote(payload); break;
           case 'references': result = await createReferenceRemote(payload); break;
+          case 'skills': result = await createSkillRemote(payload); break;
           case 'users': 
             if (imageFile) {
               result = await createRemoteWithImage(payload, imageFile);
@@ -238,6 +251,7 @@ export default function Dashboard() {
           case 'educations': result = await updateEducationRemote(payload); break;
           case 'workExperiences': result = await updateWorkRemote(payload); break;
           case 'references': result = await updateReferenceRemote(payload); break;
+          case 'skills': result = await updateSkillRemote(payload); break;
           case 'users':
             if (imageFile) {
               result = await updateRemoteWithImage(payload, imageFile);
@@ -280,6 +294,7 @@ export default function Dashboard() {
         case 'educations': result = await deleteEducationRemote(item.id); break;
         case 'workExperiences': result = await deleteWorkRemote(item.id); break;
         case 'references': result = await deleteReferenceRemote(item.id); break;
+        case 'skills': result = await deleteSkillRemote(item.id); break;
         case 'users': 
           console.log('Calling deleteRemote with id:', item.id);
           result = await deleteRemote(item.id); 

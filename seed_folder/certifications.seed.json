@@ -1,0 +1,138 @@
+[
+  {
+    "id": "1",
+    "name": "IT Support Technician",
+    "issuer": "Tech Marvels IT Academy",
+    "year": "2018",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "2",
+    "name": "Java SE",
+    "issuer": "Majjhima Sukha Foundation",
+    "year": "2019",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "3",
+    "name": "Business Analytics with Excel",
+    "issuer": "SkillUP by Simplilearn",
+    "year": "2022",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "4",
+    "name": "Java Certificate Course",
+    "issuer": "SkillUP by Simplilearn",
+    "year": "2022",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "5",
+    "name": "Foundation of Generative AI Nanodegree",
+    "issuer": "Udacity",
+    "year": "2025",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "6",
+    "name": "Docker and Kubernetes + Hands-On",
+    "issuer": "Udemy",
+    "year": "2024",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "7",
+    "name": "MLOps: From Model Development to Deployment",
+    "issuer": "Udemy",
+    "year": "2024",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "8",
+    "name": "UI/UX Design With Figma: 5+ Real World Projects",
+    "issuer": "Udemy",
+    "year": "2025",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "9",
+    "name": "Interactive Design & Prototyping Figma",
+    "issuer": "Udemy",
+    "year": "2025",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "10",
+    "name": "Figma to WordPress: Learn to Design and Build Website",
+    "issuer": "Udemy",
+    "year": "2025",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "11",
+    "name": "Web Development Course",
+    "issuer": "Advanced Institute Of Mechanics & Technology (AIMT)",
+    "year": "2022",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "12",
+    "name": "Year of Teacher for Communities",
+    "issuer": "Mon Language Development Association",
+    "year": "2021",
+    "description": "Award",
+    "certificateUrl": ""
+  },
+  {
+    "id": "13",
+    "name": "Excellent Summer Computing Tutor of Adult",
+    "issuer": "Mon Education Committee",
+    "year": "2020",
+    "description": "Award",
+    "certificateUrl": ""
+  },
+  {
+    "id": "14",
+    "name": "Advanced Proficiency in Quantum Algorithm Design",
+    "issuer": "Womanium & WISER Quantum Program",
+    "year": "2025",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "15",
+    "name": "Level Up Your UI/UX: Interactive Design & Prototyping Figma",
+    "issuer": "Udemy",
+    "year": "2025",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "16",
+    "name": "Getting Started with Docker and Kubernetes + Hands-On",
+    "issuer": "Udemy",
+    "year": "2024",
+    "description": "Certification",
+    "certificateUrl": ""
+  },
+  {
+    "id": "17",
+    "name": "Quantum Walks and Monte Carlo",
+    "issuer": "Womanium & WISER Quantum Program",
+    "year": "2025",
+    "description": "Certification",
+    "certificateUrl": ""
+  }
+]

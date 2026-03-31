@@ -8,6 +8,7 @@ import createReferencesSlice from './slices/referencesSlice'
 import createBlogsSlice from './slices/blogsSlice'
 import createUsersSlice from './slices/usersSlice'
 import createContactsSlice from './slices/contactsSlice'
+import createSkillsSlice from './slices/skillsSlice'
 
 // initial state (used for clear/reset)
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   references: [],
   blogs: [],
   contacts: [],
+  skills: [],
   users: [],
 }
 
@@ -45,6 +47,7 @@ const usePortfolioStore = create(
         ...createReferencesSlice(set, get),
         ...createBlogsSlice(set, get),
         ...createContactsSlice(set, get),
+        ...createSkillsSlice(set, get),
         ...createUsersSlice(set, get),
       }),
       {
@@ -58,6 +61,7 @@ const usePortfolioStore = create(
           references: state.references,
           blogs: state.blogs,
           contacts: state.contacts,
+          skills: state.skills,
           users: state.users,
         }),
         onRehydrateStorage: () => (state) => {

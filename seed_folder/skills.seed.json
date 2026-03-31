@@ -1,0 +1,192 @@
+[
+  {
+    "id": "1",
+    "name": "Branch Operations",
+    "category": "Management & Leadership"
+  },
+  {
+    "id": "2",
+    "name": "Strategic Planning",
+    "category": "Management & Leadership"
+  },
+  {
+    "id": "3",
+    "name": "Team Leadership & Development",
+    "category": "Management & Leadership"
+  },
+  {
+    "id": "4",
+    "name": "Sales & Budget Management",
+    "category": "Management & Leadership"
+  },
+  {
+    "id": "5",
+    "name": "Customer Relationship Management",
+    "category": "Management & Leadership"
+  },
+  {
+    "id": "6",
+    "name": "Project Management",
+    "category": "Management & Leadership"
+  },
+  {
+    "id": "7",
+    "name": "Performance Appraisal",
+    "category": "Management & Leadership"
+  },
+  {
+    "id": "8",
+    "name": "IT Support & Help Desk",
+    "category": "Information Technology & Technical Support"
+  },
+  {
+    "id": "9",
+    "name": "Hardware & Software Troubleshooting",
+    "category": "Information Technology & Technical Support"
+  },
+  {
+    "id": "10",
+    "name": "System Maintenance",
+    "category": "Information Technology & Technical Support"
+  },
+  {
+    "id": "11",
+    "name": "Network Configuration & Security",
+    "category": "Information Technology & Technical Support"
+  },
+  {
+    "id": "12",
+    "name": "Data Backup & Recovery",
+    "category": "Information Technology & Technical Support"
+  },
+  {
+    "id": "13",
+    "name": "Technical Communication",
+    "category": "Information Technology & Technical Support"
+  },
+  {
+    "id": "14",
+    "name": "Python Programming & AI",
+    "category": "Software Development & Advanced Technologies"
+  },
+  {
+    "id": "15",
+    "name": "Web & Mobile Development",
+    "category": "Software Development & Advanced Technologies"
+  },
+  {
+    "id": "16",
+    "name": "Machine Learning",
+    "category": "Software Development & Advanced Technologies"
+  },
+  {
+    "id": "17",
+    "name": "Deep Learning",
+    "category": "Software Development & Advanced Technologies"
+  },
+  {
+    "id": "18",
+    "name": "Quantum Computing & ML",
+    "category": "Software Development & Advanced Technologies"
+  },
+  {
+    "id": "19",
+    "name": "UI/UX Design (Figma)",
+    "category": "Software Development & Advanced Technologies"
+  },
+  {
+    "id": "20",
+    "name": "Cloud Computing (AWS, Docker, Kubernetes)",
+    "category": "Software Development & Advanced Technologies"
+  },
+  {
+    "id": "21",
+    "name": "Curriculum Development",
+    "category": "Training & Education"
+  },
+  {
+    "id": "22",
+    "name": "User Training",
+    "category": "Training & Education"
+  },
+  {
+    "id": "23",
+    "name": "Classroom Management",
+    "category": "Training & Education"
+  },
+  {
+    "id": "24",
+    "name": "Academic Advising",
+    "category": "Training & Education"
+  },
+  {
+    "id": "25",
+    "name": "Language Instruction",
+    "category": "Training & Education"
+  },
+  {
+    "id": "26",
+    "name": "Coding Club Facilitation",
+    "category": "Training & Education"
+  },
+  {
+    "id": "27",
+    "name": "Differentiated Instruction",
+    "category": "Training & Education"
+  },
+  {
+    "id": "28",
+    "name": "Problem-Solving",
+    "category": "Professional Competencies"
+  },
+  {
+    "id": "29",
+    "name": "Critical Thinking",
+    "category": "Professional Competencies"
+  },
+  {
+    "id": "30",
+    "name": "Teamwork",
+    "category": "Professional Competencies"
+  },
+  {
+    "id": "31",
+    "name": "Crisis Management",
+    "category": "Professional Competencies"
+  },
+  {
+    "id": "32",
+    "name": "Community Engagement",
+    "category": "Professional Competencies"
+  },
+  {
+    "id": "33",
+    "name": "Data Analysis (Excel, Power BI)",
+    "category": "Professional Competencies"
+  },
+  {
+    "id": "34",
+    "name": "Digital Graphic Design",
+    "category": "Professional Competencies"
+  },
+  {
+    "id": "35",
+    "name": "3D Modeling",
+    "category": "Professional Competencies"
+  },
+  {
+    "id": "36",
+    "name": "Quantum Computing",
+    "category": "Top Skills"
+  },
+  {
+    "id": "37",
+    "name": "Product Development",
+    "category": "Top Skills"
+  },
+  {
+    "id": "38",
+    "name": "Figma",
+    "category": "Top Skills"
+  }
+]

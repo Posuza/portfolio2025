@@ -17,12 +17,13 @@ export default function Auth() {
     try {
       setError(null);
       const response = await userService.login(credentials);
-      
-      if (response.success && response.user) {
-        login(response.user);
+
+      const userData = response?.data?.user || response?.user || null;
+      if (response?.success && userData) {
+        login(userData);
         navigate(from, { replace: true });
       } else {
-        setError(response.error || 'Login failed');
+        setError(response?.error || 'Login failed');
       }
     } catch (err) {
       console.error('Login error:', err);

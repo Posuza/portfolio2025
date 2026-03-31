@@ -54,8 +54,10 @@ export async function deleteBlog(blogId) {
 
 export async function uploadImage(filename, dataUrl) {
   const res = await callApi('uploadImage', 'POST', { filename, dataUrl })
-  if (res && res.url) return { url: res.url, id: res.id || null }
-  throw new Error(res && res.error ? String(res.error) : 'uploadImage failed')
+  const url = (res && res.data && res.data.url) || (res && res.url) || null
+  const id = (res && res.data && res.data.id) || (res && res.id) || null
+  if (url) return { url, id }
+  throw new Error((res && res.error) ? String(res.error) : 'uploadImage failed')
 }
 
 const blogsService = {
